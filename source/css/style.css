@@ -151,3 +151,27 @@ ul.toDo li .buttons button:last-of-type:before {
 #remove {
     color: red;
 }
+
+ul.toDo#completed {
+    position: relative;
+    padding: 60px 0 0 0;
+}
+
+ul.toDo#toDo {
+    position: relative;
+    padding: 20px 0 0 0;
+}
+
+ul.toDo#completed:before {
+    content: '';
+    width: 150px;
+    height: 1px;
+    background: #000000;
+
+    position: absolute;
+    top: 30px;
+    left: 50%;
+
+    margin: 0 0 0 -75px;
+}
+
