@@ -12,7 +12,22 @@ document.getElementById('addItem').addEventListener('click', function () {
 })
 
 function removeItem() {
-    
+    var item = this.parentNode.parentNode;
+    var parent = item.parentNode;
+
+    parent.removeChild(item);
+}
+
+function doneItem() {
+    var item = this.parentNode.parentNode;
+    var parent = item.parentNode;
+    var parentID = parent.id;
+
+    var target = (parentID === 'toDo') ? document.getElementById('completed'):document.getElementById('toDo');
+
+    parent.removeChild(item);
+    target.insertBefore(item, target.childNodes[0]);
+
 }
 
 function addItemToDo(text) {
@@ -33,6 +48,8 @@ function addItemToDo(text) {
     var done = document.createElement('button');
     done.classList.add('done');
     done.innerHTML = doneGlyph;
+
+    done.addEventListener('click', doneItem);
 
     buttons.appendChild(remove);
     buttons.appendChild(done);
