@@ -131,6 +131,7 @@ ul.toDo li .buttons button {
     background: none;
     position: relative;
     border: 0px;
+    font-size: 20px;
 }
 
 ul.toDo li .buttons button:last-of-type:before {
@@ -141,5 +142,12 @@ ul.toDo li .buttons button:last-of-type:before {
     top: 10px;
     right: 0;
     background: #000000;
+}
 
+#done {
+    color: green;
+}
+
+#remove {
+    color: red;
 }
