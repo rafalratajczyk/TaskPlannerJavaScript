@@ -6,7 +6,7 @@ body {
 }
 
 body, input, button {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald', sans-serif !important;
 }
 
 header {
@@ -101,12 +101,15 @@ ul.toDo {
 ul.toDo li {
     width: 100%;
     float: left;
-    height: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    min-height: 50px;
     background: #fff;
     border-radius: 5px;
     margin: 0 0 10px 0;
     position: relative;
-    padding: 0 100px 0 0;
+    padding: 12px 100px 12px 15px;
 }
 
 ul.toDo li:last-of-type {
@@ -126,5 +129,17 @@ ul.toDo li .buttons button {
     height: 50px;
     float: right;
     background: none;
+    position: relative;
     border: 0px;
+}
+
+ul.toDo li .buttons button:last-of-type:before {
+    content: '';
+    width: 1px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    background: #000000;
+
 }
