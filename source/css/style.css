@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+    background-color: #98EFFC !important;
+}
+
 body, input, button {
     font-family: 'Oswald', sans-serif;
 }
@@ -20,7 +24,7 @@ header {
 }
 
 header input {
-    width: auto;
+    width: 100%;
     right: 0;
     left: 0;
     height: 50px;
