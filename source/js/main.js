@@ -1,4 +1,4 @@
-var data = {
+var data = (localStorage.getItem('toDoList')) ? JSON.parse(localStorage.getItem('toDoList')): {
     toDo: [],
     completed: []
 };
@@ -6,17 +6,49 @@ var data = {
 var doneGlyph = '<span id="done" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>';
 var removeGlyph = '<span id="remove" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>';
 
+renderToDoList();
+
 document.getElementById('addItem').addEventListener('click', function () {
     var value = document.getElementById('item').value;
 
     if (value) {
-        addItemToDo(value);
-        document.getElementById('item').value = '';
-
-        data.toDo.push(value);
+        addItem(value);
     }
 
-})
+});
+
+document.getElementById('item').addEventListener('keydown', function (e) {
+    var value = this.value;
+
+    if (e.code === 'Enter' && value) {
+        addItem(value);
+    }
+});
+
+function addItem(value) {
+    addItemToDo(value);
+    document.getElementById('item').value = '';
+
+    data.toDo.push(value);
+    dataObjectUdated();
+
+}
+function renderToDoList() {
+    if (!data.toDo.length && !data.completed.length) return;
+
+    for (var i = 0; i < data.toDo.length; i++) {
+        var value = data.toDo[i];
+        addItemToDo(value);
+    }
+
+    for (var j = 0; j < data.completed.length; j++) {
+        var value = data.completed[j];
+        addItemToDo(value,true);
+    }
+}
+function dataObjectUdated() {
+    localStorage.setItem('toDoList', JSON.stringify(data));
+}
 
 function removeItem() {
     var item = this.parentNode.parentNode;
@@ -30,7 +62,7 @@ function removeItem() {
         data.completed.splice(data.completed.indexOf(value), 1);
     }
 
-    console.log(data);
+    dataObjectUdated();
 
     parent.removeChild(item);
 }
@@ -49,7 +81,7 @@ function doneItem() {
         data.toDo.push(value);
     }
 
-    console.log(data);
+    dataObjectUdated();
 
     var target = (parentID === 'toDo') ? document.getElementById('completed') : document.getElementById('toDo');
 
@@ -58,8 +90,8 @@ function doneItem() {
 
 }
 
-function addItemToDo(text) {
-    var list = document.getElementById('toDo');
+function addItemToDo(text, completed) {
+    var list = (completed) ? document.getElementById('completed') : document.getElementById('toDo');
 
     var item = document.createElement('li');
     item.innerText = text;
